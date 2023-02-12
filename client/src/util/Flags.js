@@ -47,3 +47,5 @@ export const ET_ENDPOINT = 'et-endpoint';
 export const MIXPANEL_TOKEN = 'mixpanel-token';
 export const MIXPANEL_STAGE = 'mixpanel-stage';
 export const DISPLAY_VERSION = 'display-version';
+export const DISABLE_DEPLOYMENT_TOOL = 'disable-deployment-tool';
+export const DISABLE_START_INSTANCE_TOOL = 'disable-start-instance-tool';

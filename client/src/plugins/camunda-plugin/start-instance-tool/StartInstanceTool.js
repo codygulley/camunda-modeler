@@ -28,6 +28,9 @@ import isExecutable from './util/isExecutable';
 
 import { ENGINES } from '../../../util/Engines';
 import classNames from 'classnames';
+import Flags, { DISABLE_START_INSTANCE_TOOL } from '../../../util/Flags';
+import debug from 'debug';
+const log = debug('UsageStatistics');
 
 const START_DETAILS_CONFIG_KEY = 'start-instance-tool';
 
@@ -56,6 +59,9 @@ export default class StartInstanceTool extends PureComponent {
   anchorRef = React.createRef();
 
   componentDidMount() {
+    if (Flags.get(DISABLE_START_INSTANCE_TOOL)) {
+      return log('Not enabled: Deployment disabled.');
+    }
 
     const {
       subscribe

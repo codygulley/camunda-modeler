@@ -32,6 +32,9 @@ import { Fill } from '../../../app/slot-fill';
 import DeployIcon from 'icons/Deploy.svg';
 
 import { ENGINES } from '../../../util/Engines';
+import Flags, { DISABLE_DEPLOYMENT_TOOL } from '../../../util/Flags';
+import debug from 'debug';
+const log = debug('UsageStatistics');
 
 const DEPLOYMENT_DETAILS_CONFIG_KEY = 'deployment-tool';
 const ENGINE_ENDPOINTS_CONFIG_KEY = 'camundaEngineEndpoints';
@@ -62,6 +65,10 @@ export default class DeploymentTool extends PureComponent {
   }
 
   componentDidMount() {
+    if (Flags.get(DISABLE_DEPLOYMENT_TOOL)) {
+      return log('Not enabled: Deployment disabled.');
+    }
+
     this.props.subscribe('app.activeTabChanged', ({ activeTab }) => {
       this.setState({
         activeTab,
